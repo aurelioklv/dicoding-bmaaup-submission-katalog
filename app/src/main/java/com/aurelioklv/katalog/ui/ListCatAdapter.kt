@@ -36,6 +36,7 @@ class ListCatAdapter(private val cats: ArrayList<Cat>) :
         val (name, imageUrl, description) = cats[position]
         Glide.with(holder.itemView.context)
             .load(imageUrl)
+            .placeholder(R.drawable.sitting_cat)
             .into(holder.photo)
         holder.tvName.text = name
         holder.tvDescription.text = description

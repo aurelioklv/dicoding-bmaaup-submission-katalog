@@ -9,5 +9,6 @@ data class Cat(
     val imageUrl: String,
     val description: String,
     val origin: String,
+    val temperament: String,
     val lifeSpan: String,
 ) : Parcelable

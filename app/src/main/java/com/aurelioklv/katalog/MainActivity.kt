@@ -1,8 +1,9 @@
 package com.aurelioklv.katalog
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,11 +25,27 @@ class MainActivity : AppCompatActivity() {
         showRecyclerList()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.about_page -> {
+                val aboutIntent = Intent(this@MainActivity, AboutActivity::class.java)
+                startActivity(aboutIntent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun getCats(): ArrayList<Cat> {
         val dataName = resources.getStringArray(R.array.data_name)
         val dataImageUrl = resources.getStringArray(R.array.data_image_url)
         val dataDescription = resources.getStringArray(R.array.data_description)
         val dataOrigin = resources.getStringArray(R.array.data_origin)
+        val dataTemperament = resources.getStringArray(R.array.data_temperament)
         val dataLifeSpan = resources.getStringArray(R.array.data_lifespan)
         val cats = ArrayList<Cat>()
 
@@ -38,7 +55,8 @@ class MainActivity : AppCompatActivity() {
                 dataImageUrl[i],
                 dataDescription[i],
                 dataOrigin[i],
-                dataLifeSpan[i]
+                dataTemperament[i],
+                dataLifeSpan[i],
             )
             cats.add(cat)
         }
@@ -58,7 +76,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSelectedCat(cat: Cat) {
-        Log.v("CLICK", "$cat")
-        Toast.makeText(this, "Click " + cat.name, Toast.LENGTH_SHORT).show()
+        val detailsIntent = Intent(this@MainActivity, DetailsActivity::class.java)
+        detailsIntent.putExtra(DetailsActivity.EXTRA_CAT, cat)
+        startActivity(detailsIntent)
     }
 }
