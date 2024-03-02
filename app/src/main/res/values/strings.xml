@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Kat-Alog</string>
+    <string name="user_name">Aurelio Killian Lexi Verrill</string>
+    <string name="user_email">aurelioklv@gmail.com</string>
     <string name="cat_name">Breed</string>
     <string name="description">Description</string>
     <string name="list">List</string>
